@@ -1,66 +1,73 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Plataforma para gerenciamento de Clientes
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Como rodar o projeto
 
-## About Laravel
+```
+# Clone o repositório
+$ git clone git@github.com:thalesmengue/olivas.git
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Instale as dependências
+$ composer install
+$ npm install
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Copie o arquivo .env
+$ cp .env.example .env
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Configure as credências do banco de dados no arquivo .env, bem como
+as credências de envio de e-mail e configuração da fila.
 
-## Learning Laravel
+# Gere a chave da aplicação
+$ php artisan key:generate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Execute as migrations
+$ php artisan migrate
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+# Rode a aplicação
+$ php artisan serve
+$ npm run dev
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Execute o servidor de fila
+$ php artisan queue:work
+```
 
-## Laravel Sponsors
+## Como usar a API
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+A API foi desenvolvida utilizando o Laravel Sanctum para autenticação via token. Assim, ao passar um usuário logado
+para a rota de login da API, será retornado um token que autenticará o usuário e possibilitará acessar as rotas de busca.
 
-### Premium Partners
+Request esperado
+```json
+{
+    "email": "admin@admin.com",
+    "senha": "123456"
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Response esperada
+```json
+{
+    "user": {
+        "id": 1,
+        "name": "Admin",
+        "email": "admin@admin.com",
+        "email_verified_at": null,
+        "created_at": "2023-05-05T04:56:15.000000Z",
+        "updated_at": "2023-05-05T04:56:15.000000Z"
+    },
+    "token": "1|yTsgJmDAHi9valbz8kdGHWGp2YPr4vEpacxb96m2"
+}
+```
 
-## Contributing
+### Rotas API
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Método HTTP | Endpoint          | Descrição                                                          |
+|-------------|-------------------|--------------------------------------------------------------------|
+| POST        | `/api/login`      | Concede ao usuário registrado o token para acessar as demais rotas |
+| GET         | `/clients/`       | Retorna os clientes do usuário autenticado                         |
+| GET         | `/clients/{name}` | Retorna os clientes com busca por nome pela URL                    |
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Tecnologias
+- [PHP 8.1](https://www.php.net/)
+- [Laravel 10](https://laravel.com/)
+- [Livewire](https://laravel-livewire.com/)
+- [TailwindCSS](https://tailwindcss.com/)
