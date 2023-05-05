@@ -3,6 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Models\Client;
+use App\Models\Phone;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
@@ -12,11 +15,13 @@ use Livewire\Redirector;
 
 class ClientsIndex extends Component
 {
-    public Collection $clients;
+    public Collection|null $clients;
+    public Model|null $phone;
 
     public function mount(): void
     {
-        $this->clients = Client::all()->where('user_id', auth()->user()->id);
+        $this->clients = Client::all()
+            ->where('user_id', auth()->user()->id);
     }
 
     public function delete($id): RedirectResponse|Redirector

@@ -13,12 +13,12 @@
                 <div>
                     <div>
                         <p class="leading-normal mb-2 text-blueGray-400 uppercase text-center font-extrabold">
-                            Client Details
+                            Detalhes do Cliente
                         </p>
                     </div>
                     <div class="mb-2 text-blueGray-600 mt-10 flex gap-1.5">
                         <div>
-                            <p class="font-bold">Name: </p>
+                            <p class="font-bold">Nome: </p>
                         </div>
                         <div>
                             <p class="mr-2">{{$client->name}}</p>
@@ -34,15 +34,17 @@
                     </div>
                     <div class="mb-2 text-blueGray-600 mt-6 flex gap-1.5">
                         <div>
-                            <p class="font-bold">Phone: </p>
+                            <p class="font-bold">Telefone: </p>
                         </div>
                         <div>
-                            <p class="mr-2">{{$client->phone}}</p>
+                            @foreach($phones as $phone)
+                                <p class="mr-2">{{$phone->phone}}</p>
+                            @endforeach
                         </div>
                     </div>
                     <div class="mb-2 text-blueGray-600 mt-6 flex gap-1.5">
                         <div>
-                            <p class="font-bold">Legal Regime: </p>
+                            <p class="font-bold">Regime Legal: </p>
                         </div>
                         <div>
                             <p class="mr-2">{{$client->legal_regime}}</p>
@@ -50,23 +52,30 @@
                     </div>
                     <div class="mb-2 text-blueGray-600 mt-6 flex gap-1.5">
                         <div>
-                            <p class="font-bold">Image: </p>
+                            <p class="font-bold">Imagem: </p>
                         </div>
                         <div>
                             <img src="{{asset('storage/' . $client->image)}}" class="mr-2 h-24">
                         </div>
                     </div>
                 </div>
-                <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
+                <div class="mt-10 py-10 border-t border-blueGray-200">
                     <div class="flex flex-wrap justify-center">
                         <div>
+                            <a href="{{route('clients.add-phone', $client->id)}}"
+                               class="text-green-600 hover:text-green-900">
+                                Adicionar Telefone
+                            </a>
+                        </div>
+                        <div class="flex flex-row ml-12">
                             <button wire:click="delete"
-                                type="submit" class="text-red-600 hover:text-red-900 ml-6">Delete</button>
+                                    type="submit" class="text-red-600 hover:text-red-900 ml-6">Deletar
+                            </button>
                         </div>
                         <div class="flex flex-row ml-12">
                             <a href="{{route('clients.update', $client->id)}}"
-                                class="text-blue-600 hover:text-blue-900">
-                                Edit
+                               class="text-blue-600 hover:text-blue-900">
+                                Editar
                             </a>
                         </div>
                     </div>

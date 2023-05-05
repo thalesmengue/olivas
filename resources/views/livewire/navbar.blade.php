@@ -16,6 +16,10 @@
         <div class="lg:flex flex-grow items-center">
             <ul class="flex flex-col lg:flex-row list-none ml-auto">
                 <li class="nav-item">
+                    <a class="hover:opacity-75 border-indigo-800 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap
+                     border-b-2 px-1 pt-1 font-medium text-gray-900" href="{{ route('user.profile', auth()->id()) }}">
+                        Perfil
+                    </a>
                     <button class="hover:opacity-75 border-indigo-800 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap
                      border-b-2 px-1 pt-1 font-medium text-gray-900" wire:click="logout">
                         Logout

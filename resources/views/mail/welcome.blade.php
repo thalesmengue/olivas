@@ -8,14 +8,14 @@
     </head>
     <body class="bg-gray-100">
         <div class="max-w-2xl mx-auto px-4 py-8">
-            <p class="text-xl font-bold mb-4">Dear {{ $client->name }},</p>
-            <p class="mb-4">Welcome to our website! You've been added as a client by {{ $client->user->name }}! </p>
-            <p class="mb-4">We are glad to have you on board and excited to have the opportunity to serve you.</p>
-            <p class="mb-4">As a new client, you will have access to all of our services and products!</p>
-            <p class="mb-4">If you have any questions or concerns, please do not hesitate to contact us. We are always here to help.</p>
-            <p class="mb-4">Thank you for choosing our company. We look forward to working with you.</p>
-            <p class="mt-8">Sincerely,</p>
-            <p class="font-bold">The Team at Olivas Digital</p>
+            <p class="text-xl font-bold mb-4"> Prezado(a) {{ $client->name }},</p>
+            <p class="mb-4">Bem-vindo ao nosso site! Você foi adicionado como cliente por {{ $client->user->name }}! </p>
+            <p class="mb-4">Estamos felizes em tê-lo a bordo e entusiasmados por ter a oportunidade de atendê-lo.</p>
+            <p class="mb-4">Como novo cliente, você terá acesso a todos os nossos serviços e produtos!</p>
+            <p class="mb-4">Se você tiver alguma dúvida ou preocupação, não hesite em nos contatar. Estamos sempre aqui para ajudar.</p>
+            <p class="mb-4">Obrigado por escolher a nossa empresa. Estamos ansiosos para trabalhar com você.</p>
+            <p class="mt-8">Atenciosamente,</p>
+            <p class="font-bold">Time da Olivas Digital</p>
         </div>
     </body>
 </html>

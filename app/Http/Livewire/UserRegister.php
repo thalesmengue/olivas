@@ -17,7 +17,7 @@ class UserRegister extends Component
 
     protected array $rules = [
         'name' => ['required', 'min:3', 'string'],
-        'email' => ['required', 'min:3', 'email'],
+        'email' => ['required', 'min:3', 'email', 'unique:users,email'],
         'password' => ['required', 'min:6', 'string']
     ];
 
